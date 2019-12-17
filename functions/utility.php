@@ -11,10 +11,10 @@ function send_email($email,$subject,$msg,$headers){
 	$mail->Password = "appified@1504";                           // SMTP password
 	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 587;                                    // TCP port to connect to
-	$mail->setFrom('nss@gmail.com', 'NSS-IITPatna');
+	$mail->setFrom('hostel_affairs@iitp.ac.in', 'IIT Patna Hostel Team');
 	$mail->addAddress($email);     // Add a recipient
 	//$mail->addAddress('ellen@example.com');               // Name is optional
-	$mail->addReplyTo('nss@gmail.com', 'Information');
+	$mail->addReplyTo('hostel_affairs@iitp.ac.in', 'Information');
 	//$mail->addCC('cc@example.com');
 	//$mail->addBCC('bcc@example.com');
 	// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments

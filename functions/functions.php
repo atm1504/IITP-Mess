@@ -1,6 +1,5 @@
 <?php
 include("utility.php");
-// include("attendance.php");
 require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -60,11 +59,11 @@ function validate_login(){
 		}
 	}
 }
-function getHours(){
+function getDetails(){
 	$mess = $_SESSION['mess'];
 	$rollno=$_SESSION['rollno'];
 	$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-		$spreadsheet = $reader->load("../attendance.xlsx");
+	$spreadsheet = $reader->load("../mess_rebate.xlsx");
 	$sheetData = $spreadsheet->getSheetByName($mess)->toArray();
 	$arrayName=$sheetData;
 	$rowSize = count( $arrayName );
@@ -74,27 +73,21 @@ function getHours(){
 			$rowNo = $x;
 			break;
 		}
-	}
-	// echo $rowNo;
-	$total_hour = $sheetData[$rowNo][2];
-	$attendance = array();
-	for($y=$columnSize; $y>=4; $y--){
-		if(!empty($sheetData[$rowNo][$y])){
-			$subAttendance=array();
-			$subAttendance['hour']=$sheetData[$rowNo][$y];
-			$subAttendance['date'] = $sheetData[0][$y];
-			$subAttendance['activity'] = $sheetData[1][$y];
-			$attendance[]=$subAttendance;
-		}
-	}
-	$response = array();
-	$response['attendance']=$attendance;
-	$_SESSION['rollno']=$rollno;
-	$_SESSION['name']=$sheetData[$rowNo][0];
-	$_SESSION['unit']=$unit;
-	$_SESSION['phone']=$sheetData[$rowNo][2];
-	$_SESSION['total_hour']=$total_hour;
-	$_SESSION['attendance']=json_encode($response);
+    }
+
+    if(!empty($rowNo)){
+        $response = array();
+        $response['stream']=$sheetData[$rowNo][0];
+        $response['rollno']=$rollno;
+        $response['mess']=$mess;
+        $response['name']=$sheetData[$rowNo][3];
+        $response['phone']=$sheetData[$rowNo][4];
+        $response['bank_name']=$sheetData[$rowNo][5];
+        $response['bank_to_be_refunded']=$sheetData[$rowNo][6];
+        return json_encode($response);
+    }else{
+        return false;
+    }
 }
 function logged_in(){
 	if(isset($_SESSION['rollno']) || isset($_COOKIE['rollno'])){
@@ -104,28 +97,25 @@ function logged_in(){
 		return false;
 	}
 }
-function blood_request(){
+function hostel_complain(){
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
-		$name=clean($_POST["BName"]);
-		$roll=clean($_POST["BRoll"]);
-		$email=clean($_POST["BEmail"]);
-		$phone=clean($_POST["BPhone"]);
-		$for_whom=clean($_POST["BForWhom"]);
-		$address=clean($_POST["BAddress"]);
-		$serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/google-service-account.json');
-		$subject="Blood Request from NSS";
+		$name=clean($_POST["name"]);
+		$roll=clean($_POST["roll"]);
+		$email=clean($_POST["email"]);
+		$phone=clean($_POST["phone"]);
+		$complain=clean($_POST["complain"]);
+		$subject="IIT Patna Hostel Issue";
 		$msg="
-			<p>$name has requested for blood. </p>
+			<p>$name has some complain regarding IIT Patna Hostel Facility. </p>
 			<p>Details: </p>
 			<h5>Name : $name</h5>
 			<h5>Roll/Employee ID : $roll</h5>
 			<h5>Email : $email</h5>
 			<h5>Phone : $phone</h5>
-			<h5>For Whom : $for_whom</h5>
-			<h5>Address : $address</h5>
+			<h5>Complain : $complain</h5>
 		";
-		$header="From: nss@iitp.ac.in";
-		$send_to ="nss@iitp.ac.in";
+		$header="From: hostel@gmail.com";
+		$send_to ="hayyoulistentome@gmail.com";
 		if (send_email($send_to,$subject,$msg,$header)){
 
 		}
