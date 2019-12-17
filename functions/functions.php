@@ -45,7 +45,7 @@ function validate_login(){
 		$rollno=clean($_POST['rollno']);
 		$password=clean($_POST['password']);
 		$password=sha1($password);
-		$sql ="SELECT id FROM users WHERE rollno='$rollno' AND password='$password'";
+		$sql ="SELECT id FROM mess WHERE rollno='$rollno' AND password='$password'";
 		$result=query($sql);
 		if(row_count($result)){
             $row = fetch_array($result1);
