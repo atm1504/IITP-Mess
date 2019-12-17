@@ -114,10 +114,15 @@ function hostel_complain(){
 			<h5>Phone : $phone</h5>
 			<h5>Complain : $complain</h5>
 		";
-		$header="From: hostel@gmail.com";
+		$header="From: hostel_affairs@iitp.ac.in";
 		$send_to ="hayyoulistentome@gmail.com";
 		if (send_email($send_to,$subject,$msg,$header)){
-
-		}
+            $sql="INSERT INTO complains (name,email,phone,complain) VALUES ('$name','$email','$phone','$complain')";
+            $result=query($sql);
+            confirm($result);
+            return true;
+		}else{
+            return false;
+        }
 	}
 }
