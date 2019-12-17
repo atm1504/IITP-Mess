@@ -60,16 +60,17 @@ function validate_login(){
 	}
 }
 function getDetails(){
-	$mess = $_SESSION['mess'];
+	// $mess = $_SESSION['mess'];
+	$mess="Mess1";
 	$rollno=$_SESSION['rollno'];
 	$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-	$spreadsheet = $reader->load("../mess_rebate.xlsx");
+	$spreadsheet = $reader->load("./mess_rebate.xlsx");
 	$sheetData = $spreadsheet->getSheetByName($mess)->toArray();
 	$arrayName=$sheetData;
 	$rowSize = count( $arrayName );
 	$columnSize = max( array_map('count', $arrayName) );
 	for($x=3; $x<=$rowSize; $x++){
-		if(strtolower($sheetData[$x][1])==strtolower($rollno)){
+		if(strtolower($sheetData[$x][2])==strtolower($rollno)){
 			$rowNo = $x;
 			break;
 		}
