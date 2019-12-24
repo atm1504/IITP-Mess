@@ -60,31 +60,36 @@ function validate_login(){
 	}
 }
 function getDetails(){
-	$mess = $_SESSION['mess'];
+	// $mess = $_SESSION['mess'];
+	$mess="Mess1";
 	$rollno=$_SESSION['rollno'];
 	$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-	$spreadsheet = $reader->load("../mess_rebate.xlsx");
+	$spreadsheet = $reader->load("./mess_rebate.xlsx");
 	$sheetData = $spreadsheet->getSheetByName($mess)->toArray();
 	$arrayName=$sheetData;
 	$rowSize = count( $arrayName );
 	$columnSize = max( array_map('count', $arrayName) );
-	for($x=3; $x<=$rowSize; $x++){
-		if(strtolower($sheetData[$x][1])==strtolower($rollno)){
+	for($x=0; $x<=$rowSize; $x++){
+		if(strtolower($sheetData[$x][2])==strtolower($rollno)){
 			$rowNo = $x;
 			break;
 		}
-    }
+	}
 
     if(!empty($rowNo)){
         $response = array();
         $response['stream']=$sheetData[$rowNo][0];
         $response['rollno']=$rollno;
-        $response['mess']=$mess;
-        $response['name']=$sheetData[$rowNo][3];
-        $response['phone']=$sheetData[$rowNo][4];
-        $response['bank_name']=$sheetData[$rowNo][5];
-        $response['bank_to_be_refunded']=$sheetData[$rowNo][6];
-        return json_encode($response);
+		$response['mess']=$mess;
+		$response['stream']=$sheetData[$rowNo][1];
+		$response['name']=$sheetData[$rowNo][3];
+		$response['email']=$sheetData[$rowNo][4];
+        $response['phone']=$sheetData[$rowNo][5];
+		$response['bank_name']=$sheetData[$rowNo][6];
+		$response['bank_account_no']=$sheetData[$rowNo][7];
+		$response['ifsc']=$sheetData[$rowNo][8];
+		$response['amount_to_be_refunded']=$sheetData[$rowNo][9];
+        return $response;
     }else{
         return false;
     }

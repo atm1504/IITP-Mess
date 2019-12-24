@@ -1,0 +1,48 @@
+.logo-container {
+  left: 50px;
+  position: absolute;
+  top: 20px;
+  z-index: 3;
+}
+.logo-container .logo {
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid #333333;
+  width: 60px;
+  float: left;
+}
+.logo-container .brand {
+  font-size: 18px;
+  color: #ffffff;
+  line-height: 20px;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 60px;
+}
+.bank{
+  margin-left: 50;
+}
+@media screen and (max-width: 1195px) {
+  .tables {
+    width: 770px;
+    margin: 20px auto;
+  }
+}
+@media screen and (max-width: 990px) {
+  .tables {
+    width: 600px;
+    margin: 20px auto;
+  }
+}
+@media screen and (max-width: 770px) {
+  .tables {
+    width: 700px;
+    margin: 20px auto;
+  }
+}
+
+th,
+td {
+  text-align: center;
+}
