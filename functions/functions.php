@@ -39,6 +39,17 @@ DELIMITER;
 return $error;
 }
 
+//Function to display success message
+function success_message($error_message){
+$error = <<<DELIMITER
+  <div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> $error_message
+  </div>
+DELIMITER;
+return $error;
+}
+
 function validate_login(){
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 		$errors=[];
@@ -105,7 +116,6 @@ function logged_in(){
 function hostel_complain(){
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$name=clean($_POST["name"]);
-		$roll=clean($_POST["roll"]);
 		$email=clean($_POST["email"]);
 		$phone=clean($_POST["phone"]);
 		$complain=clean($_POST["complain"]);
@@ -124,9 +134,12 @@ function hostel_complain(){
 		if (send_email($send_to,$subject,$msg,$header)){
             $sql="INSERT INTO complains (name,email,phone,complain) VALUES ('$name','$email','$phone','$complain')";
             $result=query($sql);
-            confirm($result);
+			confirm($result);
+			success_message("Added successfully");
+			set_message("<p class='bg-success text-center' style='color:#fff'>Successfully filed your complain. </p>");
             return true;
 		}else{
+			set_message("<p class='bg-danger text-center'>There was some error filing your complain. Please try again.</p>");
             return false;
         }
 	}
