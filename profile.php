@@ -3,15 +3,16 @@ if(logged_in() == false){
     echo "Inside";
     redirect("login.php");
 }else{
-    echo "Outside";}
-getDetails()?>
+    $details = getDetails();
+}
+?>
 
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/icons/logo.png">
+	<link rel="icon" type="image/png" href="images/icons/logo.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>IITP-Hostel Mess Rebate</title>
 
@@ -26,29 +27,29 @@ getDetails()?>
 	<link href="./css/gsdk-bootstrap-wizard.css" rel="stylesheet" />
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="assets/css/demo.css" rel="stylesheet" />
-	<link rel="shortcut icon" href="../images/mainNSS/logo.ico">
-	<link rel="apple-touch-icon-precomposed" href="../images/mainNSS/logo.jpeg">
+	<link href="./css/demo.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="./images/logo/logo.png">
+	<link rel="apple-touch-icon-precomposed" href="./images/icons/logo.png">
 </head>
 
 <body>
-<div class="image-container set-full-height" style="background-image: url('assets/img/profilebg.jpg')">
-    <!--   Creative Tim Branding   -->
-    <a href="https://www.facebook.com/nssiitp/?epa=SEARCH_BOX">
+<div class="image-container" style="background-image: url('./images/profilebg.jpg')">
+      <!-- Creative Tim Branding  
+    <a href="https://www.facebook.com/gymkhana.iitp/">
          <div class="logo-container">
             <div class="logo">
-                <img src="assets/img/logo.jpeg">
+                <img src="./images/icons/logo.png">
             </div>
             <div class="brand">
                 Web Dev Team
             </div>
         </div>
-    </a>
+    </a> -->
 
 	<!--  Made With Get Shit Done Kit  -->
-		<a href="https://www.facebook.com/atm1504" class="made-with-mk">
-			<div class="brand">IIT Patna</div>
-			<div class="made-with"><strong>Not Me but You</strong></div>
+		<a href="https://www.facebook.com/gymkhana.iitp/" class="made-with-mk">
+			<div class="brand">IITP</div>
+			<div class="made-with"><strong>Hostel Team</strong></div>
 		</a>
 
     <!--   Big container   -->
@@ -65,8 +66,8 @@ getDetails()?>
 
                     	<div class="wizard-header">
                         	<h3>
-                        	   CHECK YOUR <b> ATTENDANCE </b><br>
-                        	   <small>This information will help you know your pending hours.</small>
+                        	   CHECK YOUR <b> MESS REBATE </b><br>
+                        	   <small>This information will help you know the amount of mess refund you would receive.</small>
                         	</h3>
                     	</div>
 
@@ -85,41 +86,43 @@ getDetails()?>
                                   <div class="col-sm-4 col-sm-offset-1">
                                      <div class="picture-container">
                                           <div class="picture">
-                                              <img src="../images/mainNSS/logo.jpeg" class="picture-src" id="wizardPicturePreview" title=""/>
+                                              <img src="./images/logo.png" class="picture-src" id="wizardPicturePreview" title=""/>
                                           </div>
 
                                       </div>
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
-                                        <h5 id="sname">Name: <?php echo $_SESSION['name'] ?></h5>
+                                        <h5 id="sname">Name: <?php echo($details['name']);?></h5>
                                       </div>
                                       <div class="form-group">
-                                        <h5 id="srollno">Roll No: <?php echo $_SESSION['rollno']?></h5>
+                                        <h5 id="srollno">Roll No: <?php echo($details['rollno']);?></h5>
                                       </div>
-																			<div class="form-group">
-                                        <h5 id="cell">Unit: <b><?php echo $_SESSION['unit'] ?></b></h5>
-                                      </div>
+                                      	<div class="form-group">
+                                            <h5 id="cell">Email: <b><?php echo($details['email']); ?></b></h5>
+                                         </div>
+                                        <div class="form-group">
+                                            <h5 id="cell">Phone: <b><?php echo($details['phone']); ?></b></h5>
+                                         </div>
+									    <div class="form-group">
+                                            <h5 id="cell">Mess: <b><?php echo($details['mess']); ?></b></h5>
+                                         </div>
                                   </div>
 
                                     <div class="col-sm-6">
-                                            <div class="form-group">
-                                            <h4><b>HOURS COMPLETED</b></h4>	<h6 id="hours"><?php echo $_SESSION['total_hour'] ?></h6>
+                                            <div class="form-group bank">
+                                            <h4><b>Bank Name</b></h4>	<h6 id="hours"><?php echo($details['bank_name']); ?></h6>
                                             </div>
                                             <div class="form-group">
-                                                <h4><b>HOURS LEFT</b></h4>	<h6 id="hours"><?php 
-                                                    $hour_done=(float)$_SESSION['total_hour'];
-                                                    $hour_left=80.00-$hour_done;
-                                                    $rollno=$_SESSION['rollno'];
-                                                    if(strpos($rollno,"1801")!==false){
-                                                        $hour_left=60.00-$hour_done;
-                                                    }
-                                                    if($hour_left>0){
-                                                        echo $hour_left;
-                                                    }else{
-                                                        echo "You have completed your 80 hours quota.";
-                                                    }
-                                                ?></h6>
+                                            <h4><b>Bank Account No</b></h4>	<h6 id="hours"><?php echo($details['bank_account_no']); ?></h6>
+                                            </div>
+                                            <div class="form-group">
+                                            <h4><b>IFSC</b></h4>	<h6 id="hours"><?php echo($details['ifsc']); ?></h6>
+                                            </div>
+                                            <div class="form-group">
+                                                <h4><b>Amounnt to be Refunded</b></h4>	<h5 id="hours"><?php 
+                                                        echo($details['amount_to_be_refunded']);
+                                                ?></h5>
                                             </div>
                                     </div>
 
@@ -146,44 +149,6 @@ getDetails()?>
             </div> <!-- wizard container -->
         </div>
         </div><!-- end row -->
-        
-        <!--The table starts here-->
-        <div style="overflow: auto">
-            <div class="tables" style="max-width:946px;background-color: white;margin:20px auto;">
-            
-                <table class="table table-striped table-bordered table-hover table-responsive">
-                    <thead>
-                        <tr style="font-size:25px;background-color: orange;">
-                            <th >S.No</th>
-                            <th >Activity</th>
-                            <th >Date</th>
-                            <th >Hours</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $attendance=(array)json_decode($_SESSION["attendance"]);
-                    $attendance_array=$attendance["attendance"];
-                    $id=1;
-
-                    foreach($attendance_array as $obj){
-                        $item=(array)$obj;
-                        echo "<tr style='font-size:20px;'>
-                                <td>".$id."</td>
-                                <td>".$item["activity"]."</td>
-                                <td>".$item["date"]."</td>
-                                <td>".$item["hour"]."</td>
-                            </tr>";
-                            $id+=1;
-                    }
-                    ?>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
         <!--The table ends here-->
     </div> <!--  big container -->
 
@@ -192,7 +157,7 @@ getDetails()?>
 
     <div class="footer">
         <div class="container">
-             Made with <a href="https://www.facebook.com/atm1504/" target="_blank"><i class="fa fa-heart heart"></i> by Web Dev Team</a>
+             Made with <a href="https://www.facebook.com/atm1504" target="_blank"><i class="fa fa-heart heart"></i> by Amartya Mondal</a>
         </div>
     </div>
 
@@ -201,14 +166,14 @@ getDetails()?>
 </body>
 
 	<!--   Core JS Files   -->
-	<script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+	<script src="./js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="./js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="./js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Wizard -->
-	<script src="assets/js/gsdk-bootstrap-wizard.js"></script>
+	<script src="./js/gsdk-bootstrap-wizard.js"></script>
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="assets/js/jquery.validate.min.js"></script>
+	<script src="./js/jquery.validate.min.js"></script>
 
 </html>
