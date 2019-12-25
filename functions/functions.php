@@ -118,6 +118,24 @@ function getDetails(){
 		redirect("logout.php");
 	}
 }
+
+function getComplains(){
+	$rollno=$_SESSION['rollno'];
+	$access_token=$_SESSION['access_token'];
+	$sql="SELECT id, complain_ids from users where rollno='$rollno' and access_token='$access_token'";
+	$result=query($sql);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		$comp_id=json_decode($row['complain_ids']);
+		if(empty($comp_id)){
+			return false;
+		}else{
+			return $comp_id;
+		}
+	}
+}
+
+
 function logged_in(){
 	if(isset($_SESSION['rollno']) || isset($_COOKIE['rollno'])){
 		return true;
