@@ -134,27 +134,48 @@ function hostel_complain(){
 		$phone=clean($_POST["phone"]);
 		$complain=clean($_POST["complain"]);
 		$access_token=clean($_POST['access_token']);
-		$subject="IIT Patna Hostel Issue";
-		$msg="
-			<p>$name has some complain regarding IIT Patna Hostel Facility. </p>
-			<p>Details: </p>
-			<h5>Name : $name</h5>
-			<h5>Email : $email</h5>
-			<h5>Phone : $phone</h5>
-			<h5>Complain : $complain</h5>
-		";
-		$header="From: hostel_affairs@iitp.ac.in";
-		$send_to ="hayyoulistentome@gmail.com";
-		if (send_email($send_to,$subject,$msg,$header)){
-            $sql="INSERT INTO complains (name,email,phone,complain) VALUES ('$name','$email','$phone','$complain')";
-            $result=query($sql);
-			confirm($result);
-			success_message("Added successfully");
-			set_message("<p class='bg-success text-center' style='color:#fff'>Successfully filed your complain. </p>");
-            return true;
+		$rollno=clean($_POST['rollno']);
+		$unique_id=uniqid();
+		$sql1="SELECT id, complain_ids from users WHERE rollno='$rollno' and access_token='$access_token'";
+		$result1=query($sql1);
+		if(row_count($result1)==1){
+
+			$subject="IIT Patna Hostel Issue";
+			$msg="
+				<p>$name thank your for filing complaint. The hostel team would look after it soon. You can always check the progress of the action taken in your profile. </p>
+				<p>Details: </p>
+				<h5>Name : $name</h5>
+				<h5>Email : $email</h5>
+				<h5>Phone : $phone</h5>
+				<h5>Complain : $complain</h5>
+			";
+			$header="From: hostel_affairs@iitp.ac.in";
+			$send_to ="hayyoulistentome@gmail.com";
+			if (send_email($send_to,$subject,$msg,$header)){
+				$sql="INSERT INTO complains (name,email,phone,complain,unique_id) VALUES ('$name','$email','$phone','$complain','$unique_id')";
+				$result=query($sql);
+				confirm($result);
+				update_user_complain($unique_id,$rollno,$result1);
+				success_message("Added successfully");
+				set_message("<p class='bg-success text-center' style='color:#fff'>Successfully filed your complain. </p>");
+				return true;
+			}else{
+				set_message("<p class='bg-danger text-center'>There was some error filing your complain. Please try again.</p>");
+				return false;
+			}
 		}else{
-			set_message("<p class='bg-danger text-center'>There was some error filing your complain. Please try again.</p>");
-            return false;
-        }
+			set_message("<p class='bg-danger text-center'>TUnauthorized attempt. Please login and try again.</p>");
+		}
 	}
+}
+
+function update_user_complain($unique_id,$rollno,$result1){
+	$row=fetch_array($result1);
+	$comp_id=json_decode($row['complain_ids']);
+	$to_add=array();
+	$comp_id[]=$unique_id;
+	$ids=json_encode($comp_id);
+	$sql="UPDATE users set complain_ids='$ids' where rollno='$rollno'";
+	$result=query($sql);
+	confirm($result);
 }

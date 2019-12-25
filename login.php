@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php include("./functions/init.php"); ?>
+<?php include("./functions/init.php");
+if(logged_in() == true){
+    redirect("profile.php");
+}
+?>
 <html lang="en">
 <head>
 	<title>IIT-P Hostel Login</title>
