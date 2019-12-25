@@ -1,6 +1,5 @@
 <?php include("./functions/init.php"); 
 if(logged_in() == false){
-    echo "Inside";
     redirect("login.php");
 }else{
     $details = getDetails();

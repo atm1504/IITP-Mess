@@ -1,5 +1,10 @@
 <?php 
 	include("./functions/init.php");
+	if(logged_in() == false){
+    	redirect("login.php");
+	}else{
+		$details = getDetails();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +66,11 @@
 					<span class="label-input100">Phone</span>
 					<input class="input100" type="text" name="phone" id="phone" placeholder="Enter Number Phone">
 				</div>
+				
+				<input class="input100" type="hidden" name="access_token" id="access_token" value="<?php echo $_SESSION['access_token']; ?>">
+
+				<input class="input100" type="hidden" name="rollno" id="rollno" value="<?php echo $_SESSION['rollno']; ?>">
+
 
 				<!-- <div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Needed Services *</span>
