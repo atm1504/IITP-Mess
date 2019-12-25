@@ -3,6 +3,7 @@ if(logged_in() == false){
     redirect("login.php");
 }else{
     $details = getDetails();
+    $complains = getComplains();
 }
 ?>
 
@@ -32,7 +33,7 @@ if(logged_in() == false){
 </head>
 
 <body>
-<div class="image-container" style="background-image: url('./images/profilebg.jpg')">
+<div class="image-container set-full-height" style="background-image: url('./images/profilebg.jpg')">
       <!-- Creative Tim Branding  
     <a href="https://www.facebook.com/gymkhana.iitp/">
          <div class="logo-container">
@@ -53,8 +54,8 @@ if(logged_in() == false){
 
     <!--   Big container   -->
     <div class="container">
-        <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="row" >
+        <div class="col-sm-10 col-sm-offset-1" >
 
             <!--      Wizard container        -->
             <div class="wizard-container">
@@ -148,6 +149,44 @@ if(logged_in() == false){
             </div> <!-- wizard container -->
         </div>
         </div><!-- end row -->
+
+        <?php if ($complains!=false){?>
+        <!--The table starts here-->
+        <div style="overflow: auto">
+            <div class="tables" style="max-width:946px;background-color: white;margin:20px auto;">
+            
+                <table class="table table-striped table-bordered table-hover table-responsive">
+                    <thead>
+                        <tr style="font-size:25px;background-color: orange;">
+                            <th >ID</th>
+                            <th >Date</th>
+                            <th >Complain</th>
+                            <th >Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+
+                    foreach($complains as $obj){
+                        $sql="SELECT complain, is_resolved, status,date_time from complains where unique_id='$obj'";
+                        $result=query($sql);
+                        $row=fetch_array($result);
+                        echo "<tr style='font-size:20px;'>
+                                <td>".$obj."</td>
+                                <td>".$row["date_time"]."</td>
+                                <td>".$row["complain"]."</td>
+                                <td>".$row["status"]."</td>
+                            </tr>";
+                            $id+=1;
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <?php }?>
+
         <!--The table ends here-->
     </div> <!--  big container -->
 
