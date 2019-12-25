@@ -15,7 +15,7 @@ Students of IIT Patna can login and see the amount they would receive as mess re
 * Fork and clone the repo
 * Install php7 in your laptop. Configure the setup. Refer [here](https://www.sitepoint.com/how-to-install-php-on-windows/) for installation and configuring guide.
 * Start the php (Apache) server.
-* Open phpMyAdmin and import the db file present in the function folder. CLick [here]([https://github.com/atm1504/IITP-Mess/blob/master/functions/db.sql](https://github.com/atm1504/IITP-Mess/blob/master/functions/db.sql)) to get the file.
+* Open phpMyAdmin and import the db.sql file present in the function folder. CLick [here](https://github.com/atm1504/IITP-Mess/blob/master/functions/db.sql) to get the file.
 * Update db.php file to configure the username and password for your database. CHanges are required only in line no 2. Keep everything else as it is.
 
 ## Contribution guide
