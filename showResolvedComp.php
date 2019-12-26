@@ -2,7 +2,7 @@
 if(admin_logged_in() == false){
     redirect("admin.php");
 }else{
-    $complains = getAllComplains();
+    $complains = getAllResolvedComplains();
 }
 ?>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ if(admin_logged_in() == false){
 <body>
 
 <div class="jumbotron text-center">
-    <h1>All Unresolved Complains <?php echo $_SESSION['email'] ?></h1>
+    <h1>All Unresolved Complains</h1>
 </div>
 
 <div class="container">
@@ -34,7 +34,7 @@ if(admin_logged_in() == false){
       <th scope="col">Phone</th>
       <th scope="col">Date</th>
       <th scope="col">Complain</th>
-      <th scope="col">Status</th>
+      <th scope="col">Action Taken</th>
     </tr>
   </thead>
   <tbody>

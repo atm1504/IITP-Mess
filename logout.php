@@ -1,4 +1,4 @@
-<?php include("./functions/functions.php");
+<?php include("./functions/init.php");
 
 $rollno=$_SESSION['rollno'];
 $access_token=$_SESSION['access_token'];
