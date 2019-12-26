@@ -76,6 +76,30 @@ function validate_login(){
 		}
 	}
 }
+
+function validate_admin_login(){
+	if($_SERVER['REQUEST_METHOD']=="POST"){
+		$errors=[];
+		$email=clean($_POST['email']);
+		$password=clean($_POST['password']);
+		$password=sha1($password);
+		$hash=microtime().$password;
+		$access_token=sha1($hash);
+		$sql ="SELECT id FROM admins WHERE email='$email' AND password='$password'";
+		$result=query($sql);
+		if(row_count($result)){
+            $_SESSION['admin_logged_in']=true;
+			$_SESSION['access_token']=$access_token;
+			$_SESSION['email']=$email;
+			$sql1="UPDATE users SET access_token='$access_token' WHERE email='$email'";
+			$result1=query($sql1);
+			confirm($result1);
+            redirect("showComp.php");
+		}else{
+			echo validation_errors("Please enter correct credentials.");
+		}
+	}
+}
 function getDetails(){
 	// $mess = $_SESSION['mess'];
 	$mess="Mess1";
@@ -139,6 +163,22 @@ function getComplains(){
 function logged_in(){
 	if(isset($_SESSION['rollno']) || isset($_COOKIE['rollno'])){
 		return true;
+	}
+	else{
+		return false;
+	}
+}
+function admin_logged_in(){
+	if(isset($_SESSION['email']) || isset($_COOKIE['email'])){
+		$email=$_SESSION['email'];
+		$access_token=$_SESSION['admin_access_token'];
+		$sql="SELECT id from admins WHERE email='$email' and access_token='$access_token'";
+		$result=query($sql);
+		if(row_count($result)==1){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	else{
 		return false;
