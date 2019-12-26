@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 25, 2019 at 04:57 PM
+-- Generation Time: Dec 26, 2019 at 06:33 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.7
 
@@ -13,6 +13,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `iit_patna_hostel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `position` varchar(100) NOT NULL,
+  `access_token` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `email`, `password`, `name`, `position`, `access_token`) VALUES
+(1, 'me@atm1504.in', 'f181c50384d8adc56a0ff990d33568f686059c87', 'Amartya Mondal', 'Super Admin', '');
 
 -- --------------------------------------------------------
 
@@ -29,29 +51,30 @@ CREATE TABLE `complains` (
   `is_resolved` tinyint(1) NOT NULL DEFAULT '0',
   `unique_id` varchar(255) DEFAULT NULL,
   `status` text,
-  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `rollno` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `complains`
 --
 
-INSERT INTO `complains` (`id`, `name`, `email`, `phone`, `complain`, `is_resolved`, `unique_id`, `status`, `date_time`) VALUES
-(1, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(2, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(3, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(4, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(5, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(6, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(7, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(8, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(9, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(10, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'This is a sample complain', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(11, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'This is a sample complain', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(12, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'reuyty uyeryer wr iyuyuwer', 0, NULL, NULL, '2019-12-25 16:03:01'),
-(13, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'sjre uier uiuertiuyy', 0, '5e0386b76bd5b', NULL, '2019-12-25 16:03:01'),
-(14, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389db39399', 'ddcd', '2019-12-25 16:10:09'),
-(15, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389fa43539', NULL, '2019-12-25 16:10:40');
+INSERT INTO `complains` (`id`, `name`, `email`, `phone`, `complain`, `is_resolved`, `unique_id`, `status`, `date_time`, `rollno`) VALUES
+(1, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(2, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(3, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(4, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(5, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(6, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(7, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(8, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(9, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(10, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'This is a sample complain', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(11, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'This is a sample complain', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(12, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'reuyty uyeryer wr iyuyuwer', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
+(13, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'sjre uier uiuertiuyy', 0, '5e0386b76bd5b', NULL, '2019-12-25 16:03:01', ''),
+(14, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389db39399', 'ddcd', '2019-12-25 16:10:09', ''),
+(15, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389fa43539', NULL, '2019-12-25 16:10:40', '');
 
 -- --------------------------------------------------------
 
@@ -83,6 +106,12 @@ INSERT INTO `users` (`id`, `rollno`, `password`, `email`, `name`, `stream`, `mes
 --
 
 --
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `complains`
 --
 ALTER TABLE `complains`
@@ -98,6 +127,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `complains`

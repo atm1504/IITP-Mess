@@ -50,6 +50,7 @@ DELIMITER;
 return $error;
 }
 
+// Validates users login
 function validate_login(){
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 		$errors=[];
@@ -77,6 +78,7 @@ function validate_login(){
 	}
 }
 
+// Validate admins login
 function validate_admin_login(){
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 		$errors=[];
@@ -100,6 +102,8 @@ function validate_admin_login(){
 		}
 	}
 }
+
+// Fetch user details to be shown int he profile page
 function getDetails(){
 	// $mess = $_SESSION['mess'];
 	$mess="Mess1";
@@ -143,6 +147,7 @@ function getDetails(){
 	}
 }
 
+// Sends the complains filed by an user
 function getComplains(){
 	$rollno=$_SESSION['rollno'];
 	$access_token=$_SESSION['access_token'];
@@ -159,15 +164,47 @@ function getComplains(){
 	}
 }
 
+// Function to get the all unresolved complains by the admin
+function getAllComplains(){
+	$sql= "SELECT * FROM complains where is_resolved=0";
+	$result=query($sql);
+	$data=array();
+	while ($row = $result->fetch_assoc()) {
+		$data[]=$row;
+	}
+	return $data;
+}
 
+// Function to get the all resolved complains by the admin
+function getAllResolvedComplains(){
+	$sql= "SELECT * FROM complains where is_resolved=1";
+	$result=query($sql);
+	$data=array();
+	while ($row = $result->fetch_assoc()) {
+		$data[]=$row;
+	}
+	return $data;
+}
+
+// Check the status of users login
 function logged_in(){
 	if(isset($_SESSION['rollno']) || isset($_COOKIE['rollno'])){
-		return true;
+		$rollno=$_SESSION['rollno'];
+		$access_token=$_SESSION['access_token'];
+		$sql="SELECT id from users WHERE rollno='$rollno' and access_token='$access_token'";
+		$result=query($sql);
+		if(row_count($result)==1){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	else{
 		return false;
 	}
 }
+
+// Check the authenticity of an admin login
 function admin_logged_in(){
 	if(isset($_SESSION['email']) || isset($_COOKIE['email'])){
 		$email=$_SESSION['email'];
@@ -185,6 +222,7 @@ function admin_logged_in(){
 	}
 }
 
+// Function to file a  complain
 function hostel_complain(){
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$name=clean($_POST["name"]);
@@ -210,7 +248,7 @@ function hostel_complain(){
 			$header="From: hostel_affairs@iitp.ac.in";
 			$send_to ="hayyoulistentome@gmail.com";
 			if (send_email($send_to,$subject,$msg,$header)){
-				$sql="INSERT INTO complains (name,email,phone,complain,unique_id) VALUES ('$name','$email','$phone','$complain','$unique_id')";
+				$sql="INSERT INTO complains (name,email,phone,complain,unique_id,rollno) VALUES ('$name','$email','$phone','$complain','$unique_id','$rollno')";
 				$result=query($sql);
 				confirm($result);
 				update_user_complain($unique_id,$rollno,$result1);
@@ -227,6 +265,7 @@ function hostel_complain(){
 	}
 }
 
+// Update the complain id in the users table
 function update_user_complain($unique_id,$rollno,$result1){
 	$row=fetch_array($result1);
 	$comp_id=json_decode($row['complain_ids']);
