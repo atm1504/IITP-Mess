@@ -20,13 +20,14 @@ if(admin_logged_in() == false){
 </head>
 <body>
 
-<div class="jumbotron text-center">
-    <h1>All Unresolved Complains <?php echo $_SESSION['email'] ?></h1>
-</div>
-
 <div class="container">
-  <div class="row">
-    <table class="table">
+
+  <div class=" text-center">
+    <?php include("./includes/admin_nav.php");?>
+    <h1>All Unresolved Complains</h1>
+  </div>
+
+<table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>

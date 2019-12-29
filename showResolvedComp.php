@@ -20,11 +20,11 @@ if(admin_logged_in() == false){
 </head>
 <body>
 
-<div class="jumbotron text-center">
+<div class="container">
+<div class="text-center">
+<?php include("./includes/admin_nav.php");?>
     <h1>All Unresolved Complains</h1>
 </div>
-
-<div class="container">
   <div class="row">
     <table class="table">
   <thead class="thead-dark">
