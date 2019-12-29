@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php include("./functions/init.php");
-if(logged_in() == true){
-    redirect("profile.php");
+if(admin_logged_in() == false){
+    redirect("admin.php");
 }
 ?>
 <html lang="en">
@@ -26,8 +26,9 @@ if(logged_in() == true){
     </div>
 
     <div class="row components">
-        <form action="upload.php" method="post" class="form-data" enctype="multipart/form-data">
+        <form method="post" class="form-data" enctype="multipart/form-data">
         <?php updateMessRebate(); ?>
+            <br>
             Select file to upload:
             <input type="file" class="input-file" required name="fileToUpload" id="fileToUpload" accept=".xls,.xlsx">
             <input type="submit" class="submit-button" value="Upload Image" name="submit">
