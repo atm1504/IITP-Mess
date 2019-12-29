@@ -40,7 +40,9 @@ if(admin_logged_in() == true){
 					Hostel Admin Account Login
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5" method="POST" action="#">
-					 <?php validate_admin_login() ?>
+					 <?php validate_admin_login();
+					 	display_message();
+					 ?>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter email id">
 						<input class="input100" type="text" name="email" id="email" placeholder="abc@xyz.com">

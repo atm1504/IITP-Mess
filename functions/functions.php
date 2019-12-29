@@ -89,11 +89,11 @@ function validate_admin_login(){
 		$access_token=sha1($hash);
 		$sql ="SELECT id FROM admins WHERE email='$email' AND password='$password'";
 		$result=query($sql);
-		if(row_count($result)){
+		if(row_count($result)==1){
             $_SESSION['admin_logged_in']=true;
-			$_SESSION['access_token']=$access_token;
+			$_SESSION['admin_access_token']=$access_token;
 			$_SESSION['email']=$email;
-			$sql1="UPDATE users SET access_token='$access_token' WHERE email='$email'";
+			$sql1="UPDATE admins SET access_token='$access_token' WHERE email='$email'";
 			$result1=query($sql1);
 			confirm($result1);
             redirect("showComp.php");
@@ -103,7 +103,7 @@ function validate_admin_login(){
 	}
 }
 
-// Fetch user details to be shown int he profile page
+// Fetch user details to be shown in the profile page
 function getDetails(){
 	// $mess = $_SESSION['mess'];
 	$mess="Mess1";
@@ -303,6 +303,49 @@ function updateMessRebate(){
 				echo"<p class='bg-danger text-center'>There was some error updating the file. Please try again.</p>";
 				return false;
 			}
+		}
+	}
+}
+
+// Change password of admins
+function adminPassChange(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$old_password=clean($_POST["old_password"]);
+		$new_password=clean($_POST["password"]);
+		$confirm_password=clean($_POST["confirm_password"]);
+		$email=clean($_POST["admin_email"]);
+		$access_token=clean($_POST["admin_access_token"]);
+		$sql="SELECT id, password, position from admins where email='$email' and access_token='$access_token'";
+		$result=query($sql);
+		
+		confirm($result);
+		if(row_count($result)==1){
+			$row=fetch_array($result);
+			$password=$row['password'];
+			$old_password=sha1($old_password);
+
+			if($password!=$old_password){
+				echo "<p class='bg-danger text-center'>Passwords didn't match. Please try again.</p>";
+				set_message("<p class='bg-danger text-center'>Passwords didn't match. Please try again.</p>");
+			}else{
+				if($new_password!=$confirm_password){
+					echo "<p class='bg-danger text-center'>Both the entered new passwords didn't match. Please type correctly.</p>";
+					set_message("<p class='bg-danger text-center'>Both the entered new passwords didn't match. Please type correctly.</p>");
+				}else{
+					$new_password=sha1($new_password);
+
+					$sql1="UPDATE admins set password='$new_password' where email='$email'";
+					$result1=query($sql1);
+					confirm($result1);
+					echo"<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>";
+					set_message("<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>");
+					// redirect("admin.php");
+				}
+			}
+
+		}else{
+			echo "<p class='bg-danger text-center'>Unauthorized access.</p>";
+			set_message("<p class='bg-danger text-center'>Unauthorized access.</p>");
 		}
 	}
 }
