@@ -13,7 +13,7 @@
       <a class="nav-link" href="showResolvedComp.php">Resolved Complains</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Update Mess Rebate</a>
+      <a class="nav-link" href="./updateMessRebate.php">Update Mess Rebate</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Change Password</a>

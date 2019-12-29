@@ -276,3 +276,33 @@ function update_user_complain($unique_id,$rollno,$result1){
 	$result=query($sql);
 	confirm($result);
 }
+
+// Update the mess rebate sheet
+function updateMessRebate(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		// Do the task
+		if(isset($_FILES['fileToUpload'])){
+			$target="./";
+			$target_file="./mess_rebate.xlsx";
+			$uploadOk = 1;
+			// If file exists, remove the file
+			if (file_exists($target_file)) {
+				if(!unlink($target_file)){
+					$uploadOk = 0;
+				}
+			}
+			if($uploadOk==1){
+				if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+					 echo"<p class='bg-success text-center' style='color:#fff'>Successfully update the file. </p>";
+					return true;
+				} else {
+					echo"<p class='bg-danger text-center'>There was some error updating the file. Please try again.</p>";
+					return false;
+				}
+			}else{
+				echo"<p class='bg-danger text-center'>There was some error updating the file. Please try again.</p>";
+				return false;
+			}
+		}
+	}
+}
