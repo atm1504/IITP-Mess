@@ -339,7 +339,7 @@ function adminPassChange(){
 					confirm($result1);
 					echo"<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>";
 					set_message("<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>");
-					// redirect("admin.php");
+					logoutAdmin();
 				}
 			}
 
@@ -348,4 +348,76 @@ function adminPassChange(){
 			set_message("<p class='bg-danger text-center'>Unauthorized access.</p>");
 		}
 	}
+}
+
+// Change password of the users
+function userPassChange(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$old_password=clean($_POST["old_password"]);
+		$new_password=clean($_POST["password"]);
+		$confirm_password=clean($_POST["confirm_password"]);
+		$rollno=clean($_POST["rollno"]);
+		$access_token=clean($_POST["access_token"]);
+		$sql="SELECT id, password from users where rollno='$rollno' and access_token='$access_token'";
+		$result=query($sql);
+		
+		confirm($result);
+		if(row_count($result)==1){
+			$row=fetch_array($result);
+			$password=$row['password'];
+			$old_password=sha1($old_password);
+
+			if($password!=$old_password){
+				echo "<p class='bg-danger text-center'>Passwords didn't match. Please try again.</p>";
+				set_message("<p class='bg-danger text-center'>Passwords didn't match. Please try again.</p>");
+			}else{
+				if($new_password!=$confirm_password){
+					echo "<p class='bg-danger text-center'>Both the entered new passwords didn't match. Please type correctly.</p>";
+					set_message("<p class='bg-danger text-center'>Both the entered new passwords didn't match. Please type correctly.</p>");
+				}else{
+					$new_password=sha1($new_password);
+
+					$sql1="UPDATE users set password='$new_password' where rollno='$rollno'";
+					$result1=query($sql1);
+					confirm($result1);
+					echo"<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>";
+					set_message("<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>");
+					logoutUser();
+				}
+			}
+
+		}else{
+			echo "<p class='bg-danger text-center'>Unauthorized access.</p>";
+			set_message("<p class='bg-danger text-center'>Unauthorized access.</p>");
+		}
+	}
+}
+
+
+// Logout user
+function logoutUser(){
+	$rollno=$_SESSION['rollno'];
+	$access_token=$_SESSION['access_token'];
+	$sql="UPDATE users set access_token='' WHERE rollno='$rollno' and access_token='$access_token'";
+	$result=query($sql);
+
+	if(isset($_COOKIE['rollno'])){
+		unset($_COOKIE['rollno']);
+		setcookie('rollno','',time()-86400);
+	}
+	if(isset($_COOKIE['access_token'])){
+		unset($_COOKIE['access_token']);
+		setcookie('access_token','',time()-86400);
+	}
+	redirect("login.php");
+}
+
+// Logout admins
+function logoutAdmin(){
+	$email=$_SESSION['email'];
+	$access_token=$_SESSION['admin_access_token'];
+	$sql="UPDATE admins set access_token='' WHERE email='$email' and access_token='$access_token'";
+	$result=query($sql);
+	confirm($result);
+	redirect("admin.php");
 }
