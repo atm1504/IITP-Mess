@@ -19,7 +19,7 @@
       <a class="nav-link" href="#">Change Password</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="adminLogout">Logout</a>
+      <a class="nav-link" href="adminLogout.php">Logout</a>
     </li>
   </ul>
 </nav>
