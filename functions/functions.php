@@ -309,18 +309,16 @@ function updateMessRebate(){
 
 // Change password of admins
 function adminPassChange(){
-	echo "called -1";
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
-		echo "called -2";
 		$old_password=clean($_POST["old_password"]);
 		$new_password=clean($_POST["password"]);
 		$confirm_password=clean($_POST["confirm_password"]);
 		$email=clean($_POST["admin_email"]);
 		$access_token=clean($_POST["admin_access_token"]);
-		$sql="SELECT id, password from admins where email='$email' and access_token='$access_token'";
+		$sql="SELECT id, password, position from admins where email='$email' and access_token='$access_token'";
 		$result=query($sql);
-		echo $sql;
-		confirm_result($result);
+		
+		confirm($result);
 		if(row_count($result)==1){
 			$row=fetch_array($result);
 			$password=$row['password'];
@@ -331,16 +329,17 @@ function adminPassChange(){
 				set_message("<p class='bg-danger text-center'>Passwords didn't match. Please try again.</p>");
 			}else{
 				if($new_password!=$confirm_password){
-					echo "<p class='bg-danger text-center'>PBoth the entered new passwords didn't match. Please type correctly.</p>";
-					set_message("<p class='bg-danger text-center'>PBoth the entered new passwords didn't match. Please type correctly.</p>");
+					echo "<p class='bg-danger text-center'>Both the entered new passwords didn't match. Please type correctly.</p>";
+					set_message("<p class='bg-danger text-center'>Both the entered new passwords didn't match. Please type correctly.</p>");
 				}else{
 					$new_password=sha1($new_password);
 
 					$sql1="UPDATE admins set password='$new_password' where email='$email'";
 					$result1=query($sql1);
-					confirm_result($result1);
+					confirm($result1);
 					echo"<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>";
 					set_message("<p class='bg-success text-center' style='color:#fff'>Password successfully updated. </p>");
+					// redirect("admin.php");
 				}
 			}
 
