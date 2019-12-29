@@ -276,3 +276,10 @@ function update_user_complain($unique_id,$rollno,$result1){
 	$result=query($sql);
 	confirm($result);
 }
+
+// Update the mess rebate sheet
+function updateMessRebate(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		// Do the task
+	}
+}

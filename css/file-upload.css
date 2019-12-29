@@ -1,0 +1,46 @@
+.file-submit{
+display: block;
+}
+
+.input-file{
+  display: block;
+}
+
+#body{
+  text-align: center;
+}
+
+#container{
+  margin:8em
+}
+
+.components{
+  margin-top: 100px;
+  align-items: center;
+}
+
+.form-data{
+  margin: auto;
+}
+
+.input-file{
+  margin-top: 20px;
+  display: block;
+  border: blue;
+  border-radius: 1em;
+  border-color: darkblue;
+  border-style: double;
+  align-items: center;
+  border-width: 10px;
+}
+
+.submit-button{
+  margin-top: 20px;
+  border-color: darkred;
+  border-radius: 1em;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  align-items: center;
+  text-align: center;
+}

@@ -33,7 +33,6 @@ if(admin_logged_in() == true){
 <!--===============================================================================================-->
 </head>
 <body>
-	<?php include("./includes/admin_nav.php");?>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/hostel.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
