@@ -135,7 +135,10 @@ if(logged_in() == false){
                             <div class="pull-right">
                                 <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
                               <a href="logout.php">  <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Log Out' /></a>
-
+                            </div>
+                            <div class="pull-right" style="margin-right:10px">
+                                <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
+                              <a href="chng-pass.php">  <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Change Password' /></a>
                             </div>
 
                             <div class="pull-left">

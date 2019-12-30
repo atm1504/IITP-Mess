@@ -49,7 +49,7 @@ if(admin_logged_in() == false){
         <td><?php echo $ca['date_time']; ?></td>
         <td><?php echo $ca['complain']; ?></td>
         <td><?php echo $ca['status']; ?></td>
- 				<td><a href="#"><i class="fa fa-edit" style="font-size:24px; height:20px; width:20px"></i></a></td>
+ 				<td><a href="updt-status.php?unique_id=<?php echo $ca['unique_id']?>"><i class="fa fa-edit" style="font-size:24px; height:20px; width:20px"></i></a></td>
     </tr>
     <?php } ?>
         </tbody>
