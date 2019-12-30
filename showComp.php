@@ -26,6 +26,7 @@ if(admin_logged_in() == false){
   <div class=" text-center">
     <?php include("./includes/admin_nav.php");?>
     <h1>All Unresolved Complains</h1>
+    <?php display_message(); ?>
   </div>
 
 <table class="table">
