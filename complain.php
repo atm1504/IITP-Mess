@@ -1,10 +1,5 @@
 <?php 
 	include("./functions/init.php");
-	if(logged_in() == false){
-    	redirect("login.php");
-	}else{
-		$details = getDetails();
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,15 +31,218 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main_complain.css">
 <!--===============================================================================================-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
+
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+body {
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 100px;
+}
+
+form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 343px;
+  height: 333px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 500px;
+  height: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+textarea {
+  background: #e9ecef;
+  width: 437px;
+  height: 150px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: block;
+  font-family: "Source Sans Pro",'FontAwesome', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  padding-left: 45px;
+  padding-right: 20px;
+  padding-top: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+input {
+  width: 437px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: block;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+input.name {
+  font-family: "Source Sans Pro",'FontAwesome', sans-serif;
+  background:#e9ecef;
+  padding-left: 45px;
+}
+
+input.email {
+	font-family: "Source Sans Pro",'FontAwesome', sans-serif;
+  background:#e9ecef;
+  padding-left: 45px;
+}
+
+input.message {
+  background: rgba(255, 255, 255, 0.4)
+    url(http://luismruiz.com/img/gemicon_message.png) no-repeat scroll 16px 16px;
+	font-family: "Source Sans Pro",'FontAwesome', sans-serif;
+  padding-left: 45px;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
+
+:-moz-placeholder {
+  color: #fff;
+}
+
+::-moz-placeholder {
+  color: #fff;
+}
+
+:-ms-input-placeholder {
+  color: #fff;
+}
+
+input:focus,
+textarea:focus {
+  background-color: rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.btn {
+  width: 138px;
+  height: 44px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  float: right;
+  border: 1px solid #253737;
+  background: #416b68;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#6da5a3),
+    to(#416b68)
+  );
+  background: #d41872;
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+  padding: 10.5px 21px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  text-shadow: #333333 0 1px 0;
+  color: #e1e1e1;
+}
+
+
+.btn:hover {
+  border: 1px solid #253737;
+  text-shadow: #333333 0 1px 0;
+  background: #416b68;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#77b2b0),
+    to(#416b68)
+  );
+  background-color: #555555;
+  color: #fff;
+}
+
+.btn:active {
+  margin-top: 1px;
+  text-shadow: #333333 0 -1px 0;
+  border: 1px solid #253737;
+  background: #6da5a3;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#416b68),
+    to(#416b68)
+  );
+  background: -webkit-linear-gradient(top, #416b68, #609391);
+  background: -moz-linear-gradient(top, #416b68, #6da5a3);
+  background: -ms-linear-gradient(top, #416b68, #6da5a3);
+  background: -o-linear-gradient(top, #416b68, #6da5a3);
+  background-image: -ms-linear-gradient(top, #416b68 0%, #6da5a3 100%);
+  color: #fff;
+  -webkit-box-shadow: rgba(255, 255, 255, 0) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  -moz-box-shadow: rgba(255, 255, 255, 0) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+}
+</style>
 <body>
 
 
 	<div class="container-contact100">
-		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="POST">
+		
 
-				<span class="contact100-form-title">
+				<span class="contact100-form-title" style="color:white;padding-bottom:0px;">
 					<?php 
 					hostel_complain();
 					display_message();
@@ -52,95 +250,15 @@
 					File Mess Complain
 				</span>
 
-				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Name">
-					<span class="label-input100">FULL NAME *</span>
-					<input class="input100" type="text" name="name" id="name" placeholder="Enter Your Name">
-				</div>
+				<form>
+					<input name="name" placeholder="&#xf007; NAME" class="name" required />
+  					<input name="emailaddress" placeholder="&#xf0e0; EMAIL" class="email" type="email" required />
+  					<textarea rows="4" cols="50" name="subject" placeholder="&#xf119; COMLPAIN" class="message" required></textarea>
+  					<input name="submit" class="btn" type="submit" value="Send" />
+				</form>
 
-				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Enter Your Email (e@a.x)">
-					<span class="label-input100">Email *</span>
-					<input class="input100" type="text" name="email" id="email" placeholder="Enter Your Email ">
-				</div>
-
-				<div class="wrap-input100 bg1 rs1-wrap-input100">
-					<span class="label-input100">Phone</span>
-					<input class="input100" type="text" name="phone" id="phone" placeholder="Enter Number Phone">
-				</div>
 				
-				<input class="input100" type="hidden" name="access_token" id="access_token" value="<?php echo $_SESSION['access_token']; ?>">
-
-				<input class="input100" type="hidden" name="rollno" id="rollno" value="<?php echo $_SESSION['rollno']; ?>">
-
-
-				<!-- <div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Needed Services *</span>
-					<div>
-						<select class="js-select2" name="service">
-							<option>Please chooses</option>
-							<option>eCommerce Bussiness</option>
-							<option>UI/UX Design</option>
-							<option>Online Services</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div> -->
-
-				<!-- <div class="w-full dis-none js-show-service">
-					<div class="wrap-contact100-form-radio">
-						<span class="label-input100">What type of products do you sell?</span>
-
-						<div class="contact100-form-radio m-t-15">
-							<input class="input-radio100" id="radio1" type="radio" name="type-product" value="physical" checked="checked">
-							<label class="label-radio100" for="radio1">
-								Phycical Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio2" type="radio" name="type-product" value="digital">
-							<label class="label-radio100" for="radio2">
-								Digital Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio3" type="radio" name="type-product" value="service">
-							<label class="label-radio100" for="radio3">
-								Services Consulting
-							</label>
-						</div>
-					</div>
-
-					<div class="wrap-contact100-form-range">
-						<span class="label-input100">Budget *</span>
-
-						<div class="contact100-form-range-value">
-							$<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-							<input type="text" name="from-value">
-							<input type="text" name="to-value">
-						</div>
-
-						<div class="contact100-form-range-bar">
-							<div id="filter-bar"></div>
-						</div>
-					</div>
-				</div> -->
-
-				<div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Please Type Your Message">
-					<span class="label-input100">Complain</span>
-					<textarea class="input100" name="complain" id="complain" placeholder="Your complain here..."></textarea>
-				</div>
-
-				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
-						<span>
-							Submit
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-						</span>
-					</button>
-				</div>
-			</form>
-		</div>
+			
 	</div>
 
 
