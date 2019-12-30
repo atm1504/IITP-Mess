@@ -66,7 +66,7 @@ if(admin_logged_in() == false){
 
     <div class="form-group">
         <label for="event_organizer">Current Status: </label>
-        <textarea type="text" class="form-control" id="status" name="status"  readonly><?php echo $complain['status']?></textarea>
+        <textarea type="text" class="form-control" id="status" name="status"><?php echo $complain['status']?></textarea>
     </div>
 
    <button type="submit" name="update_status" id="update_status" class="btn btn-primary">Update Status</button>
