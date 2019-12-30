@@ -421,3 +421,21 @@ function logoutAdmin(){
 	confirm($result);
 	redirect("admin.php");
 }
+
+// Get the details of a complain
+function getComplain($unique_id){
+	$sql="SELECT * from complains where unique_id='$unique_id'";
+	$result=query($sql);
+	confirm($result);
+	if(row_count($result)==1){
+		$row=fetch_array($result);
+		return $row;
+	}else{
+		return false;
+	}
+}
+
+// Update complain status calls
+function updateComplainStatusCalls(){
+	
+}
