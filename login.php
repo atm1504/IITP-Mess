@@ -41,7 +41,9 @@ if(logged_in() == true){
 					Hostel Account Login
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5" method="POST" action="#">
-					 <?php validate_login() ?>
+					 <?php 
+					 validate_login();
+					 display_message(); ?>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter Roll No">
 						<input class="input100" type="text" name="rollno" id="name" placeholder="1801ME07">

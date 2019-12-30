@@ -35,7 +35,6 @@ if(admin_logged_in() == true){
 <!--===============================================================================================-->
 </head>
 <body>
-	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/hostel1.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
@@ -46,7 +45,9 @@ if(admin_logged_in() == true){
 
 				
 				<form class="login100-form validate-form p-b-33 p-t-5" method="POST" action="#">
-					 <?php validate_admin_login() ?>
+					 <?php validate_admin_login();
+					 	display_message();
+					 ?>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter email id">
 						<input class="input100" type="text" name="email" id="email" placeholder="Email id">

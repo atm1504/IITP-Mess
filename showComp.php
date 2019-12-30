@@ -17,16 +17,18 @@ if(admin_logged_in() == false){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-<div class="jumbotron text-center">
-    <h1>All Unresolved Complains <?php echo $_SESSION['email'] ?></h1>
-</div>
-
 <div class="container">
-  <div class="row">
-    <table class="table">
+
+  <div class=" text-center">
+    <?php include("./includes/admin_nav.php");?>
+    <h1>All Unresolved Complains</h1>
+  </div>
+
+<table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -35,6 +37,7 @@ if(admin_logged_in() == false){
       <th scope="col">Date</th>
       <th scope="col">Complain</th>
       <th scope="col">Status</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -46,6 +49,7 @@ if(admin_logged_in() == false){
         <td><?php echo $ca['date_time']; ?></td>
         <td><?php echo $ca['complain']; ?></td>
         <td><?php echo $ca['status']; ?></td>
+ 				<td><a href="#"><i class="fa fa-edit" style="font-size:24px; height:20px; width:20px"></i></a></td>
     </tr>
     <?php } ?>
         </tbody>
