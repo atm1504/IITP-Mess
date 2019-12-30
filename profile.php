@@ -33,7 +33,7 @@ if(logged_in() == false){
 </head>
 
 <body>
-<div class="image-container set-full-height" style="background-image: url('./images/profilebg.jpg')">
+<div class="image-container set-full-height" style="background-image: url('./images/Hostel.jpg')">
       <!-- Creative Tim Branding  
     <a href="https://www.facebook.com/gymkhana.iitp/">
          <div class="logo-container">
@@ -66,7 +66,7 @@ if(logged_in() == false){
 
                     	<div class="wizard-header">
                         	<h3>
-                        	   CHECK YOUR <b> MESS REBATE </b><br>
+                        	   CHECK YOUR <b style="font-weight: 900"> MESS REBATE </b><br>
                         	   <small>This information will help you know the amount of mess refund you would receive.</small>
                         	</h3>
                     	</div>
@@ -93,19 +93,19 @@ if(logged_in() == false){
                                   </div>
                                   <div class="col-sm-6">
                                       <div class="form-group">
-                                        <h5 id="sname">Name: <?php echo($details['name']);?></h5>
+                                        <h5 id="sname"><b>Name: </b><?php echo($details['name']);?></h5>
                                       </div>
                                       <div class="form-group">
-                                        <h5 id="srollno">Roll No: <?php echo($details['rollno']);?></h5>
+                                        <h5 id="srollno"><b>Roll No:</b> <?php echo($details['rollno']);?></h5>
                                       </div>
                                       	<div class="form-group">
-                                            <h5 id="cell">Email: <b><?php echo($details['email']); ?></b></h5>
+                                            <h5 id="cell"><b>Email: </b><?php echo($details['email']); ?></h5>
                                          </div>
                                         <div class="form-group">
-                                            <h5 id="cell">Phone: <b><?php echo($details['phone']); ?></b></h5>
+                                            <h5 id="cell"><b>Phone: </b><?php echo($details['phone']); ?></h5>
                                          </div>
 									    <div class="form-group">
-                                            <h5 id="cell">Mess: <b><?php echo($details['mess']); ?></b></h5>
+                                            <h5 id="cell"><b>Mess: </b><?php echo($details['mess']); ?></h5>
                                          </div>
                                   </div>
 
@@ -153,11 +153,11 @@ if(logged_in() == false){
         <?php if ($complains!=false){?>
         <!--The table starts here-->
         <div style="overflow: auto">
-            <div class="tables" style="max-width:946px;background-color: white;margin:20px auto;">
+            <div class="tables" style="max-width:946px;background-color:#ffffff80; margin:20px auto;">
             
                 <table class="table table-striped table-bordered table-hover table-responsive">
                     <thead>
-                        <tr style="font-size:25px;background-color: orange;">
+                        <tr style="font-size:25px;background-color: #880E4F;">
                             <th >ID</th>
                             <th >Date</th>
                             <th >Complain</th>
