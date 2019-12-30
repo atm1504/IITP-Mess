@@ -39,7 +39,7 @@ if(admin_logged_in() == false){
 
     <input type="hidden" name="unique_id" id="unique_id" value="<?php echo $id; ?>" />
     <input type="hidden" name="admin_email" id="admin_email" value="<?php echo $_SESSION["email"]; ?>" />
-    <input type="hidden" name="admin_access_token" id="uadmin_access_token" value="<?php echo $_SESSION["admin_access_token"]; ?>" />
+    <input type="hidden" name="admin_access_token" id="admin_access_token" value="<?php echo $_SESSION["admin_access_token"]; ?>" />
 
     <div class="form-group">
         <label for="event_organizer">Complain filed by: </label>

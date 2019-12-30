@@ -435,7 +435,62 @@ function getComplain($unique_id){
 	}
 }
 
+// Validated admin
+function is_admin_valid($email,$access_token){
+	$sql="SELECT id from admins where email='$email' and access_token='$access_token'";
+	$result=query($sql);
+	confirm($result);
+	if(row_count($result)==1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 // Update complain status calls
 function updateComplainStatusCalls(){
-	
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$email=clean($_POST["admin_email"]);
+		$access_token=clean($_POST["admin_access_token"]);
+		if(is_admin_valid($email,$access_token)==true){
+			if(isset($_POST["update_status"])){
+				updateStatus();
+				echo"<p class='bg-success text-center' style='color:#fff'>Successfully updated the status. </p>";
+				set_message("<p class='bg-success text-center' style='color:#fff'>Successfully updated the status. </p>");
+				redirect("showComp.php");
+			}elseif(isset($_POST["mark_resolved"])){
+				markResolved();
+				set_message("<p class='bg-success text-center' style='color:#fff'>Successfully marked as resolved. </p>");
+				echo"<p class='bg-success text-center' style='color:#fff'>Successfully marked as resolved. </p>";
+				redirect("showComp.php");
+			}elseif(isset($_POST["update_mark_resolved"])){
+				updateStatus();
+				markResolved();
+				echo"<p class='bg-success text-center' style='color:#fff'>Successfully completed the task. </p>";
+				set_message("<p class='bg-success text-center' style='color:#fff'>Successfully completed the task. </p>");
+				redirect("showComp.php");
+			}
+		}else{
+			echo "<p class='bg-danger text-center'>Unauthorized access.</p>";
+		}
+	}
+}
+
+// Update status
+function updateStatus(){
+	$status=clean($_POST["status"]);
+	$unique_id=clean($_POST["unique_id"]);
+	$sql="UPDATE complains set status='$status' where unique_id='$unique_id'";
+	$result=query($sql);
+	confirm($result);
+	return true;
+}
+
+// Function mark resolved
+function markResolved(){
+	$unique_id=clean($_POST["unique_id"]);
+	$sql="UPDATE complains set is_resolved=1 where unique_id='$unique_id'";
+	$result=query($sql);
+	confirm($result);
+	return true;
 }
