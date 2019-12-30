@@ -73,7 +73,7 @@ input[type="button"]:focus {
   border-radius: 30px;
   background-color: rgba(16, 16, 16, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #FFFFFF;
+  color: #FFEB3B;
   cursor: pointer;
   padding: 10px 12px;
   white-space: nowrap;
@@ -171,8 +171,8 @@ p {
 }
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
-  color: #999999;
-  font-weight: 300;
+  color: #010318;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -191,14 +191,19 @@ h1 .subtitle {
   background-color: #FFFFFF;
   padding: 10px 0 20px;
   width: 100%;
+  border: 4px;
+
 }
 
 .wizard-card {
   min-height: 410px;
-  background-color: #FFFFFF;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff80;
+  box-shadow: 0 0 15px #880E4F, 0 0 1px 1px  #880E4F;
   border-radius: 10px;
   padding: 10px 0;
+  border:4px;
+  border: solid;
+   border-color: #880E4F;
 }
 .wizard-card .picture-container {
   position: relative;
@@ -208,8 +213,8 @@ h1 .subtitle {
 .wizard-card .picture {
   width: 106px;
   height: 106px;
-  background-color: #999999;
-  border: 4px solid #CCCCCC;
+  background-color: #EEEEEE;
+  border: 4px solid #880E4F;
   color: #FFFFFF;
   border-radius: 50%;
   margin: 5px auto;
@@ -320,7 +325,7 @@ h1 .subtitle {
   font-size: 12px;
   text-transform: uppercase;
   -webkit-font-smoothing: subpixel-antialiased;
-  background-color: #FF9500;
+  background-color: #880E4F;
   top: 0px;
   left: 0px;
   color: #FFFFFF;
@@ -654,8 +659,8 @@ h1 .subtitle {
   border-color: #05AE0E;
 }
 .btn-fill.btn-warning {
-  background-color: #FF9500;
-  border-color: #FF9500;
+  background-color: #880E4F;
+  border-color: #880E4F;
 }
 .btn-fill.btn-warning:hover, .btn-fill.btn-warning:focus, .btn-fill.btn-warning:active, .btn-fill.btn-warning.active, .open .dropdown-toggle .btn-fill.btn-warning {
   background-color: #ED8D00;
@@ -938,14 +943,14 @@ label small {
   bottom: 20px;
   right: 0px;
   width: 100%;
-  color: #FFFFFF;
+  color: #880E4F;
   z-index: 4;
   text-align: center;
   margin-top: 60px;
   text-shadow: 0 0px 1px black;
 }
 .footer a {
-  color: #FFFFFF;
+  color: #880E4F;
 }
 .footer .heart {
   color: #FF3B30;
