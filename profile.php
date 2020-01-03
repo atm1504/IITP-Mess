@@ -141,6 +141,15 @@ if(logged_in() == false){
                               <a href="chng-pass.php">  <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Change Password' /></a>
                             </div>
 
+                            <div class="pull-right" style="margin-right:10px">
+                                <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
+                                <?php if ($details["verified"]==0){?>
+                               <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Verify Details' />
+                                <?php }else{ ?>
+                                <input type='button' class='btn btn-finish btn-fill btn-success btn-wd btn-sm' name='finish' value='Verified' disabled/>
+                                <?php }?>
+                            </div>
+
                             <div class="pull-left">
                                 <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
                             </div>

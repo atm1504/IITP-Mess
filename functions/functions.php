@@ -138,6 +138,7 @@ function getDetails(){
 			$response['bank_account_no']=$sheetData[$rowNo][7];
 			$response['ifsc']=$sheetData[$rowNo][8];
 			$response['amount_to_be_refunded']=$sheetData[$rowNo][9];
+			$response["verified"]=$sheetData[$rowNo][10];
 			return $response;
 		}else{
 			return false;
