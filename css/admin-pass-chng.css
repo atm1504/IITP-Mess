@@ -45,11 +45,11 @@ body {
   margin-right: auto;
   margin-left: auto;
   border: 12px solid transparent;
-  border-bottom-color: #28d;
+  border-bottom-color: #32545e;
 }
 
 .login-header {
-  background: #28d;
+  background: #32545e;
   padding: 20px;
   font-size: 1.4em;
   font-weight: normal;
@@ -59,7 +59,7 @@ body {
 }
 
 .login-container {
-  background: #ebebeb;
+  background: #ebebeb63;
   padding: 12px;
 }
 
@@ -83,7 +83,7 @@ body {
 .login input[type="email"],
 .login input[type="password"] {
   background: #fff;
-  border-color: #bbb;
+  border-color:#3E2723;
   color: #555;
 }
 
@@ -94,14 +94,14 @@ body {
 }
 
 .login input[type="submit"] {
-  background: #28d;
+  background: #32545e;
   border-color: transparent;
   color: #fff;
   cursor: pointer;
 }
 
 .login input[type="submit"]:hover {
-  background: #17c;
+  background: #32545e;
 }
 
 /* Buttons' focus effect */
