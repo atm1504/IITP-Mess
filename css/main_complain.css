@@ -729,3 +729,219 @@ textarea.input100 {
     padding: 15px 0px 0 0px;
   }
 }
+
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+  
+
+  body {
+  
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 100px;
+  }
+
+form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 343px;
+  height: 333px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  width: 800px;
+  max-width: 100%;
+  height: 600px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+textarea {
+  background: #e9ecef;
+  width: 100%;
+  max-height: 210px;
+  height: 31%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: block;
+  font-family: Montserrat-SemiBold,FontAwesome, sans-serif;
+  font-size: 18px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.phone{
+  background:#e9ecef;
+  font-family:Montserrat-SemiBold,FontAwesome;
+}
+
+input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: block;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  color:black;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  
+  font-family: "Montserrat-SemiBold", sans-serif;
+}
+
+input.name {
+  font-family: Montserrat-SemiBold,FontAwesome, sans-serif;
+  background:#e9ecef;
+  
+}
+
+input.email {
+	font-family: Montserrat-SemiBold,FontAwesome, sans-serif;
+  background:#e9ecef;
+  
+}
+
+input.message {
+  background: rgba(255, 255, 255, 0.4)
+    url(http://luismruiz.com/img/gemicon_message.png) no-repeat scroll 16px 16px;
+	font-family: "Source Sans Pro",'FontAwesome', sans-serif;
+  padding-left: 45px;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
+
+:-moz-placeholder {
+  color: #fff;
+}
+
+::-moz-placeholder {
+  color: #fff;
+}
+
+:-ms-input-placeholder {
+  color: #fff;
+}
+
+input:focus,
+textarea:focus {
+  background-color: rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  color: #fff;
+}
+
+.btn {
+  width: 138px;
+  height: 44px;
+  font-family: Montserrat-SemiBold;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  float: right;
+  border: 1px solid #253737;
+  /* background: #416b68;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#6da5a3),
+    to(#416b68)
+  ); */
+  background: #d41872;
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+  padding: 10.5px 21px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  text-shadow: #333333 0 1px 0;
+  color: #fff;
+}
+
+
+.btn:hover {
+  border: 1px solid #253737;
+  text-shadow: #333333 0 1px 0;
+  background: #5c6c6b;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#576463),
+    to(#5e6c6b)
+  );
+  background-color: #555555;
+  color: #fff;
+}
+
+.btn:active {
+  margin-top: 1px;
+  text-shadow: #333333 0 -1px 0;
+  border: 1px solid #253737;
+  background: #5c6c6b;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#576463),
+    to(#5e6c6b)
+  );
+  /* background: -webkit-linear-gradient(top, #416b68, #609391);
+  background: -moz-linear-gradient(top, #416b68, #6da5a3);
+  background: -ms-linear-gradient(top, #416b68, #6da5a3);
+  background: -o-linear-gradient(top, #416b68, #6da5a3);
+  background-image: -ms-linear-gradient(top, #416b68 0%, #6da5a3 100%); */
+  color: #fff;
+  -webkit-box-shadow: rgba(255, 255, 255, 0) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  -moz-box-shadow: rgba(255, 255, 255, 0) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0) 0 1px 0,
+    inset rgba(255, 255, 255, 0.7) 0 1px 0;
+}
