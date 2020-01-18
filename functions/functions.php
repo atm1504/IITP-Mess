@@ -78,6 +78,19 @@ function validate_login(){
 	}
 }
 
+// Download excel sheet of the data table
+function downloadSheet(){
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$email=$_POST["email"];
+		$access_token=$_POST["access_token"];
+		if (is_admin_valid($email,$access_token)==true){
+
+		}else{
+			redirect("adminLogout.php");
+		}
+	}
+}
+
 // Validate admins login
 function validate_admin_login(){
 	if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -323,7 +336,7 @@ function updateMessRebate(){
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$email=clean($_POST["email"]);
 		$access_token=clean($_POST["access_token"]);
-		// if(is_admin_valid($email,$access_token)==true){
+		if(is_admin_valid($email,$access_token)==true){
 			if(isset($_FILES['fileToUpload'])){
 				$target="./";
 				$target_file="./mess_rebate.xlsx";
@@ -350,9 +363,9 @@ function updateMessRebate(){
 					return false;
 				}
 			}
-		// }else{
-		// 	redirect("adminLogout.php");
-		// }
+		}else{
+			redirect("adminLogout.php");
+		}
 
 	}
 }
