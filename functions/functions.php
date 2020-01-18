@@ -138,6 +138,7 @@ function getDetails(){
 			$response['bank_account_no']=$sheetData[$rowNo][7];
 			$response['ifsc']=$sheetData[$rowNo][8];
 			$response['amount_to_be_refunded']=$sheetData[$rowNo][9];
+			$response["verified"]=$sheetData[$rowNo][10];
 			return $response;
 		}else{
 			return false;
@@ -184,6 +185,25 @@ function getAllResolvedComplains(){
 		$data[]=$row;
 	}
 	return $data;
+}
+
+// Update verification
+function updateVerification(){
+	echo "Testing.";
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$rollno=clean($_POST["rollno"]);
+		$access_token=clean($_POST["access_token"]);
+		$mess="Mess1";
+		echo "For testing purpose";
+		$sql="SELECT id from users where rollno='$rollno' and access_token='$access_token'";
+		$result=query($sql);
+		if(row_count($result)==1){
+
+
+		}else{
+			redirect("logout.php");
+		}
+	}
 }
 
 // Check the status of users login

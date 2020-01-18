@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 26, 2019 at 06:33 AM
+-- Generation Time: Dec 30, 2019 at 05:16 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.7
 
@@ -34,7 +34,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `email`, `password`, `name`, `position`, `access_token`) VALUES
-(1, 'me@atm1504.in', 'f181c50384d8adc56a0ff990d33568f686059c87', 'Amartya Mondal', 'Super Admin', '');
+(1, 'me@atm1504.in', 'f181c50384d8adc56a0ff990d33568f686059c87', 'Amartya Mondal', 'Super Admin', 'e56b60fe7590a82d00efcdce91d31ae41216ae27');
 
 -- --------------------------------------------------------
 
@@ -60,21 +60,10 @@ CREATE TABLE `complains` (
 --
 
 INSERT INTO `complains` (`id`, `name`, `email`, `phone`, `complain`, `is_resolved`, `unique_id`, `status`, `date_time`, `rollno`) VALUES
-(1, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(2, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(3, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(4, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(5, 'sffef', 'er@gmail.com', '34234243', 'ertre ert ter te ', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(6, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(7, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(8, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(9, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '12323234 2444', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(10, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'This is a sample complain', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(11, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'This is a sample complain', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(12, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'reuyty uyeryer wr iyuyuwer', 0, NULL, NULL, '2019-12-25 16:03:01', ''),
-(13, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'sjre uier uiuertiuyy', 0, '5e0386b76bd5b', NULL, '2019-12-25 16:03:01', ''),
-(14, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389db39399', 'ddcd', '2019-12-25 16:10:09', ''),
-(15, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389fa43539', NULL, '2019-12-25 16:10:40', '');
+(13, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'sjre uier uiuertiuyy', 1, '5e0386b76bd5b', 'testing', '2019-12-25 16:03:01', '1801me07'),
+(14, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389db39399', 'ddcd', '2019-12-25 16:10:09', '1801me07'),
+(15, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', 'iurewu oiureuio eroiuiteur', 0, '5e0389fa43539', 'Filed status. Testing it.', '2019-12-25 16:10:40', '1801me07'),
+(16, 'Amartya Mondal', 'hayyoulistentome@gmail.com', '08967570983', '3564563 uydws', 1, '5e09a690e7569', 'Resolved', '2019-12-30 07:26:18', '1801me07');
 
 -- --------------------------------------------------------
 
@@ -99,7 +88,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `rollno`, `password`, `email`, `name`, `stream`, `mess`, `access_token`, `complain_ids`) VALUES
-(1, '1801me07', 'a03a4a1ebcd9d95c4a049c45fbf0145adc5329b9', 'atm1504.in@gmail.com', 'Amartya Mondal', 'BTech', 'Mess1', '250170d3179eedde60388e8bff4a75813a968ad3', '[\"5e0389db39399\", \"5e0389fa43539\"]');
+(1, '1801me07', 'a03a4a1ebcd9d95c4a049c45fbf0145adc5329b9', 'atm1504.in@gmail.com', 'Amartya Mondal', 'BTech', 'Mess1', '77170a0a52df40ddfe26366acdf33fe0f22fe2a6', '[\"5e0389db39399\", \"5e0389fa43539\", \"5e09a690e7569\"]');
 
 --
 -- Indexes for dumped tables
@@ -138,7 +127,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `complains`
 --
 ALTER TABLE `complains`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`

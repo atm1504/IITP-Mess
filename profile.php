@@ -61,7 +61,7 @@ if(logged_in() == false){
             <div class="wizard-container">
 
                 <div class="card wizard-card" data-color="orange" id="wizardProfile">
-                    <form action="" method="">
+                    <div>
                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
                     	<div class="wizard-header">
@@ -140,6 +140,19 @@ if(logged_in() == false){
                                 <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
                               <a href="chng-pass.php">  <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Change Password' /></a>
                             </div>
+                            <form method="POST" id="verifyForm">
+                            <?php updateVerification(); ?>
+                                <input type="hidden" name="rollno" value="<?php echo($details['rollno']);?>">
+                                <input type="hidden" name="access_token" value="<?php echo($_SESSION['access_token']);?>">
+                                <div class="pull-right" style="margin-right:10px">
+                                    <input type='submit' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
+                                    <?php if ($details["verified"]==0){?>
+                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Verify Details' />
+                                    <?php }else{ ?>
+                                    <input type='button' class='btn btn-finish btn-fill btn-success btn-wd btn-sm' name='finish' value='Verified' disabled/>
+                                    <?php }?>
+                                </div>
+                            </form>
 
                             <div class="pull-left">
                                 <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
@@ -147,7 +160,7 @@ if(logged_in() == false){
                             <div class="clearfix"></div>
                         </div>
 
-                    </form> 
+                    </div> 
                 </div>
             </div> <!-- wizard container -->
         </div>
