@@ -21,20 +21,19 @@ if(admin_logged_in() == false){
 <div class="container">  
     <div class=" text-center">
         <?php include("./includes/admin_nav.php");?>
-        <h1>Update Mess Rebate Sheet</h1>
+        <h1>Download Mess Rebate Sheet</h1>
         <?php display_message();?>
 
     </div>
 
     <div class="row components">
         <form method="post" class="form-data" enctype="multipart/form-data">
-        <?php updateMessRebate(); ?>
+        <?php downloadSheet(); ?>
             <br>
-            Select file to upload:
-            <input type="hidden" name="email" value="<?php echo $_SESSION['email'];?>">
-            <input type="hidden" name="access_token" value="<?php echo $_SESSION['admin_access_token'];?>">
-            <input type="file" class="input-file" required name="fileToUpload" id="fileToUpload" accept=".xls,.xlsx">
-            <input type="submit" class="submit-button" value="Upload Image" name="submit">
+            Click here to download the file:
+            <input type="hidden" class="submit-button" value="<?php echo $_SESSION['admin_access_token']; ?>" name="access_token">
+            <input type="hidden" class="submit-button" value="<?php echo $_SESSION['email']; ?>" name="email">
+            <input type="submit" class="submit-button" value="Download" name="download">
         </form>
     </div>
 

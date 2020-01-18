@@ -16,6 +16,9 @@
       <a class="nav-link" href="./updateMessRebate.php">Update Mess Rebate</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="./downloadSheet.php">Download Sheet</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="admin-chng-pass.php">Change Password</a>
     </li>
     <li class="nav-item">
