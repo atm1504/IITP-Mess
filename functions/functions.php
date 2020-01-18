@@ -78,13 +78,62 @@ function validate_login(){
 	}
 }
 
+// Generate an excel sheet and download it
+function generateSheet(){
+	$spreadsheet = new Spreadsheet();
+	$sheet = $spreadsheet->getActiveSheet();
+	$sheet->setCellValue('A1', 'Sl. No');
+	$sheet->setCellValue('b1', 'Stream');
+	$sheet->setCellValue('C1', 'Roll No');
+	$sheet->setCellValue('D1', 'Name');
+	$sheet->setCellValue('E1', 'Email');
+	$sheet->setCellValue('F1', 'Phone Number');
+	$sheet->setCellValue('G1', 'Bank Name');
+	$sheet->setCellValue('H1', 'Bank Account No');
+	$sheet->setCellValue('I1', 'IFSC Code');
+	$sheet->setCellValue('J1', 'Amount to be Refunded');
+	$sheet->setCellValue('K1', 'Verified');
+
+	$sql="SELECT * from data";
+	$result=query($sql);
+	$data=array();
+	$x=2;
+	while ($row = $result->fetch_assoc()) {
+		$sheet->setCellValue("A$x", $x-1);
+		$sheet->setCellValue("B$x", $row['stream']);
+		$sheet->setCellValue("C$x", $row["rollno"]);
+		$sheet->setCellValue("D$x", $row["name"]);
+		$sheet->setCellValue("E$x", $row["email"]);
+		$sheet->setCellValue("F$x", $row["phone"]);
+		$sheet->setCellValue("G$x", $row["bank_name"]);
+		$sheet->setCellValue("H$x", $row["account_no"]);
+		$sheet->setCellValue("I$x", $row["ifsc_code"]);
+		$sheet->setCellValue("J$x", $row["amount"]);
+		$sheet->setCellValue("K$x", $row["verified"]);
+		$x=$x+1;
+
+	}
+	$writer = new Xlsx($spreadsheet); 
+	$writer->save('mess.xlsx'); 
+
+}
+
 // Download excel sheet of the data table
 function downloadSheet(){
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$email=$_POST["email"];
 		$access_token=$_POST["access_token"];
 		if (is_admin_valid($email,$access_token)==true){
-
+			$target="./";
+			$target_file="./mess.xlsx";
+			$uploadOk = 1;
+			// If file exists, remove the file
+			if (file_exists($target_file)) {
+				if(!unlink($target_file)){
+					$uploadOk = 0;
+				}
+			}
+			generateSheet();
 		}else{
 			redirect("adminLogout.php");
 		}
