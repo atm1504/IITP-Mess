@@ -297,33 +297,74 @@ function update_user_complain($unique_id,$rollno,$result1){
 	confirm($result);
 }
 
+// Update the data table
+function addDataTableData(){
+	$sql="TRUNCATE TABLE data";
+	$result=query($sql);
+	$mess="Mess1";
+
+	$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+	$spreadsheet = $reader->load("./mess_rebate.xlsx");
+	$sheetData = $spreadsheet->getSheetByName($mess)->toArray();
+	$arrayName=$sheetData;
+	$rowSize = count( $arrayName );
+	$columnSize = max( array_map('count', $arrayName) );
+	for($x=1; $x<=$rowSize; $x++){
+		echo "Test-4";
+		$name=$sheetData[$x][3];
+		$email=$sheetData[$x][4];
+		$rollno=$sheetData[$x][2];
+		$stream=$sheetData[$x][1];
+		$phone=$sheetData[$x][5];
+		$bank_name=$sheetData[$x][6];
+		$account_no=$sheetData[$x][7];
+		$ifsc=$sheetData[$x][8];
+		$amount=$sheetData[$x][9];;
+		$verified=$sheetData[$x][10];
+		$sql="INSERT INTO data (name,email,rollno,stream,phone,bank_name,account_no,ifsc_code,amount,verified)";
+		$sql .=" VALUES('$name','$email','$rollno','$stream','$phone', ";
+		$sql .="'$bank_name','$account_no','$ifsc',$amount,$verified)";
+		$result=query($sql);
+	}
+	echo "Test-3";
+}
+
 // Update the mess rebate sheet
 function updateMessRebate(){
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
-		// Do the task
-		if(isset($_FILES['fileToUpload'])){
-			$target="./";
-			$target_file="./mess_rebate.xlsx";
-			$uploadOk = 1;
-			// If file exists, remove the file
-			if (file_exists($target_file)) {
-				if(!unlink($target_file)){
-					$uploadOk = 0;
+		$email=clean($_POST["email"]);
+		$access_token=clean($_POST["access_token"]);
+		// if(is_admin_valid($email,$access_token)==true){
+			if(isset($_FILES['fileToUpload'])){
+				$target="./";
+				$target_file="./mess_rebate.xlsx";
+				$uploadOk = 1;
+				// If file exists, remove the file
+				if (file_exists($target_file)) {
+					if(!unlink($target_file)){
+						$uploadOk = 0;
+					}
 				}
-			}
-			if($uploadOk==1){
-				if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-					 echo"<p class='bg-success text-center' style='color:#fff'>Successfully update the file. </p>";
-					return true;
-				} else {
+				if($uploadOk==1){
+					if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+						// Update the data table
+						addDataTableData();
+
+						echo"<p class='bg-success text-center' style='color:#fff'>Successfully update the file. </p>";
+						return true;
+					} else {
+						echo"<p class='bg-danger text-center'>There was some error updating the file. Please try again.</p>";
+						return false;
+					}
+				}else{
 					echo"<p class='bg-danger text-center'>There was some error updating the file. Please try again.</p>";
 					return false;
 				}
-			}else{
-				echo"<p class='bg-danger text-center'>There was some error updating the file. Please try again.</p>";
-				return false;
 			}
-		}
+		// }else{
+		// 	redirect("adminLogout.php");
+		// }
+
 	}
 }
 

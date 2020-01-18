@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 30, 2019 at 05:16 PM
+-- Generation Time: Jan 18, 2020 at 05:33 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.7
 
@@ -34,7 +34,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `email`, `password`, `name`, `position`, `access_token`) VALUES
-(1, 'me@atm1504.in', 'f181c50384d8adc56a0ff990d33568f686059c87', 'Amartya Mondal', 'Super Admin', 'e56b60fe7590a82d00efcdce91d31ae41216ae27');
+(1, 'me@atm1504.in', 'f181c50384d8adc56a0ff990d33568f686059c87', 'Amartya Mondal', 'Super Admin', '103c814ff5b1aeba2187cddf0cb52ed1a0c089e8');
 
 -- --------------------------------------------------------
 
@@ -68,6 +68,35 @@ INSERT INTO `complains` (`id`, `name`, `email`, `phone`, `complain`, `is_resolve
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `data`
+--
+
+CREATE TABLE `data` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `rollno` varchar(10) DEFAULT NULL,
+  `stream` varchar(255) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `account_no` varchar(255) DEFAULT NULL,
+  `ifsc_code` varchar(255) DEFAULT NULL,
+  `amount` float DEFAULT NULL,
+  `verified` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `data`
+--
+
+INSERT INTO `data` (`id`, `name`, `email`, `rollno`, `stream`, `phone`, `bank_name`, `account_no`, `ifsc_code`, `amount`, `verified`) VALUES
+(1, 'Amartya Mondal', 'atm1504.in@gmail.com', '1801me07', 'BTECH', '8967570983', 'SBi', '2367846433443', '3467344326SBI', 3000, 0),
+(2, 'Annway', 'a1504.in@gmail.com', '1801me14', 'BTECH', '8967570983', 'SBi', '2367846433443', '3467344326SBI', 3000, 0),
+(3, 'Testing', 'dsfdsf@tes.com', '1801me09', 'BTECH', '8967570983', 'SBi', '2367846433443', '3467344326SBI', 3000, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -88,7 +117,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `rollno`, `password`, `email`, `name`, `stream`, `mess`, `access_token`, `complain_ids`) VALUES
-(1, '1801me07', 'a03a4a1ebcd9d95c4a049c45fbf0145adc5329b9', 'atm1504.in@gmail.com', 'Amartya Mondal', 'BTech', 'Mess1', '77170a0a52df40ddfe26366acdf33fe0f22fe2a6', '[\"5e0389db39399\", \"5e0389fa43539\", \"5e09a690e7569\"]');
+(1, '1801me07', 'a03a4a1ebcd9d95c4a049c45fbf0145adc5329b9', 'atm1504.in@gmail.com', 'Amartya Mondal', 'BTech', 'Mess1', '3820a4d0aef9e863fe8f34ec9d7a222d07d93163', '[\"5e0389db39399\", \"5e0389fa43539\", \"5e09a690e7569\"]');
 
 --
 -- Indexes for dumped tables
@@ -105,6 +134,13 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `complains`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data`
+--
+ALTER TABLE `data`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rollno` (`rollno`);
 
 --
 -- Indexes for table `users`
@@ -128,6 +164,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `complains`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `data`
+--
+ALTER TABLE `data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
