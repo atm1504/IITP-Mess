@@ -132,9 +132,6 @@ function getDetails(){
 		}else{
 			return false;
 		}
-
-
-
 	}else{
 		redirect("logout.php");
 	}
