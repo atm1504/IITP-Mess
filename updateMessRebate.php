@@ -31,6 +31,8 @@ if(admin_logged_in() == false){
         <?php updateMessRebate(); ?>
             <br>
             Select file to upload:
+            <input type="hidden" name="email" value="<?php echo $_SESSION['email'];?>">
+            <input type="hidden" name="access_token" value="<?php echo $_SESSION['access_token'];?>">
             <input type="file" class="input-file" required name="fileToUpload" id="fileToUpload" accept=".xls,.xlsx">
             <input type="submit" class="submit-button" value="Upload Image" name="submit">
         </form>
