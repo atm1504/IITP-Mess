@@ -40,108 +40,38 @@
 <body>
 
 
-	<div class="container-contact100">
-		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="POST">
+<div class="container-contact100">
+		
 
-				<span class="contact100-form-title">
-					<?php 
-					hostel_complain();
-					display_message();
-					?>
-					File Mess Complain
-				</span>
-
-				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Name">
-					<span class="label-input100">FULL NAME *</span>
-					<input class="input100" type="text" name="name" id="name" placeholder="Enter Your Name">
-				</div>
-
-				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Enter Your Email (e@a.x)">
-					<span class="label-input100">Email *</span>
-					<input class="input100" type="text" name="email" id="email" placeholder="Enter Your Email ">
-				</div>
-
-				<div class="wrap-input100 bg1 rs1-wrap-input100">
-					<span class="label-input100">Phone</span>
-					<input class="input100" type="text" name="phone" id="phone" placeholder="Enter Number Phone">
-				</div>
 				
-				<input class="input100" type="hidden" name="access_token" id="access_token" value="<?php echo $_SESSION['access_token']; ?>">
 
-				<input class="input100" type="hidden" name="rollno" id="rollno" value="<?php echo $_SESSION['rollno']; ?>">
+		<form>
 
+			<span class="contact100-form-title" style="color:white;padding-bottom:30px;">
+				  <?php 
+				  hostel_complain();
+				  display_message();
+				  ?>
+				  File Mess Complain
+			</span>
+			<input name="name" id="name" placeholder="&#xf007; NAME" class="name" type="text" required />
+			  <input name="email" id="email" placeholder="&#xf0e0; EMAIL" class="email" type="text" required />
+				  
+			<input class="input100 phone" type="text" name="phone" id="phone" placeholder="&#xf095; PHONE NUMBER">
+			<input class="input100" type="hidden" name="access_token" id="access_token" value="<?php echo $_SESSION['access_token']; ?>">
 
-				<!-- <div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Needed Services *</span>
-					<div>
-						<select class="js-select2" name="service">
-							<option>Please chooses</option>
-							<option>eCommerce Bussiness</option>
-							<option>UI/UX Design</option>
-							<option>Online Services</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div> -->
+			<input class="input100" type="hidden" name="rollno" id="rollno" value="<?php echo $_SESSION['rollno']; ?>">
+		
+			<textarea rows="4" cols="50" name="complain" id="complain" placeholder="&#xf249; COMLPAIN" class="message" required></textarea>
+				  
+			<input name="submit" class="btn" type="submit" value="Send" />
+		
+		</form>
 
-				<!-- <div class="w-full dis-none js-show-service">
-					<div class="wrap-contact100-form-radio">
-						<span class="label-input100">What type of products do you sell?</span>
+			
+		
+</div>
 
-						<div class="contact100-form-radio m-t-15">
-							<input class="input-radio100" id="radio1" type="radio" name="type-product" value="physical" checked="checked">
-							<label class="label-radio100" for="radio1">
-								Phycical Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio2" type="radio" name="type-product" value="digital">
-							<label class="label-radio100" for="radio2">
-								Digital Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio3" type="radio" name="type-product" value="service">
-							<label class="label-radio100" for="radio3">
-								Services Consulting
-							</label>
-						</div>
-					</div>
-
-					<div class="wrap-contact100-form-range">
-						<span class="label-input100">Budget *</span>
-
-						<div class="contact100-form-range-value">
-							$<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-							<input type="text" name="from-value">
-							<input type="text" name="to-value">
-						</div>
-
-						<div class="contact100-form-range-bar">
-							<div id="filter-bar"></div>
-						</div>
-					</div>
-				</div> -->
-
-				<div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Please Type Your Message">
-					<span class="label-input100">Complain</span>
-					<textarea class="input100" name="complain" id="complain" placeholder="Your complain here..."></textarea>
-				</div>
-
-				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
-						<span>
-							Submit
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-						</span>
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
 
 
 
