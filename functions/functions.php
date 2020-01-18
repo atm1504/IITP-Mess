@@ -187,6 +187,25 @@ function getAllResolvedComplains(){
 	return $data;
 }
 
+// Update verification
+function updateVerification(){
+	echo "Testing.";
+	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$rollno=clean($_POST["rollno"]);
+		$access_token=clean($_POST["access_token"]);
+		$mess="Mess1";
+		echo "For testing purpose";
+		$sql="SELECT id from users where rollno='$rollno' and access_token='$access_token'";
+		$result=query($sql);
+		if(row_count($result)==1){
+
+
+		}else{
+			redirect("logout.php");
+		}
+	}
+}
+
 // Check the status of users login
 function logged_in(){
 	if(isset($_SESSION['rollno']) || isset($_COOKIE['rollno'])){
