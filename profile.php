@@ -34,17 +34,6 @@ if(logged_in() == false){
 
 <body>
 <div class="image-container set-full-height" style="background-image: url('./images/Hostel.jpg')">
-      <!-- Creative Tim Branding  
-    <a href="https://www.facebook.com/gymkhana.iitp/">
-         <div class="logo-container">
-            <div class="logo">
-                <img src="./images/icons/logo.png">
-            </div>
-            <div class="brand">
-                Web Dev Team
-            </div>
-        </div>
-    </a> -->
 
 	<!--  Made With Get Shit Done Kit  -->
 		<a href="https://www.facebook.com/gymkhana.iitp/" class="made-with-mk">
