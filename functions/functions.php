@@ -112,37 +112,29 @@ function getDetails(){
 	$sql="SELECT id from users where rollno='$rollno' and access_token='$access_token'";
 	$result=query($sql);
 	if(row_count($result)==1){
-		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-		$spreadsheet = $reader->load("./mess_rebate.xlsx");
-		$sheetData = $spreadsheet->getSheetByName($mess)->toArray();
-		$arrayName=$sheetData;
-		$rowSize = count( $arrayName );
-		$columnSize = max( array_map('count', $arrayName) );
-		for($x=0; $x<=$rowSize; $x++){
-			if(strtolower($sheetData[$x][2])==strtolower($rollno)){
-				$rowNo = $x;
-				break;
-			}
-		}
-
-		if(!empty($rowNo)){
+		$sql1="SELECT * from data where rollno='$rollno'";
+		$result1=query($sql1);
+		if(row_count($result1)==1){
+			$row=fetch_array($result1);
 			$response = array();
-			$response['stream']=$sheetData[$rowNo][0];
-			$response['rollno']=$rollno;
+			$response['rollno']=$row["rollno"];
 			$response['mess']=$mess;
-			$response['stream']=$sheetData[$rowNo][1];
-			$response['name']=$sheetData[$rowNo][3];
-			$response['email']=$sheetData[$rowNo][4];
-			$response['phone']=$sheetData[$rowNo][5];
-			$response['bank_name']=$sheetData[$rowNo][6];
-			$response['bank_account_no']=$sheetData[$rowNo][7];
-			$response['ifsc']=$sheetData[$rowNo][8];
-			$response['amount_to_be_refunded']=$sheetData[$rowNo][9];
-			$response["verified"]=$sheetData[$rowNo][10];
+			$response['stream']=$row["stream"];
+			$response['name']=$row["name"];
+			$response['email']=$row["email"];
+			$response['phone']=$row["phone"];
+			$response['bank_name']=$row["bank_name"];
+			$response['bank_account_no']=$row["account_no"];
+			$response['ifsc']=$row["ifsc_code"];
+			$response['amount_to_be_refunded']=$row["amount"];
+			$response["verified"]=$row["verified"];
 			return $response;
 		}else{
 			return false;
 		}
+
+
+
 	}else{
 		redirect("logout.php");
 	}
@@ -189,12 +181,12 @@ function getAllResolvedComplains(){
 
 // Update verification
 function updateVerification(){
-	echo "Testing.";
+
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$rollno=clean($_POST["rollno"]);
 		$access_token=clean($_POST["access_token"]);
 		$mess="Mess1";
-		echo "For testing purpose";
+
 		$sql="SELECT id from users where rollno='$rollno' and access_token='$access_token'";
 		$result=query($sql);
 		if(row_count($result)==1){
